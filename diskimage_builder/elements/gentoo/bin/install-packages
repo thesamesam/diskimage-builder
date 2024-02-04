@@ -121,7 +121,7 @@ else
         if [[ ! -f ${PORTDIR}/profiles ]]; then
             emerge-webrsync -q
         fi
-        install_gentoo_packages -q --jobs=2 --changed-use "${PKGS}"
+        install_gentoo_packages --changed-use "${PKGS}"
     elif [[ "${ACTION}" == 'remove' ]]; then
         if [[ ! -f ${PORTDIR}/profiles ]]; then
             emerge-webrsync -q
@@ -143,3 +143,4 @@ else
         echo 'something went really wrong, install action is not install or remove'
     fi
 fi
+
