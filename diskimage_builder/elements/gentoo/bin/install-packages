@@ -76,7 +76,7 @@ while true; do
             if [[ ! -f ${PORTDIR}/profiles ]]; then
                 emerge-webrsync -q
             fi
-            install_gentoo_packages --update --deep --newuse --complete-graph=y @world
+            install_gentoo_packages --update --deep --newuse @world
             install_gentoo_packages --verbose=n --depclean
             install_gentoo_packages --usepkg=n @preserved-rebuild
             etc-update --automode -5
