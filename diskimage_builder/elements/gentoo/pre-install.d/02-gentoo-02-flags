@@ -36,6 +36,5 @@ echo "~sys-block/open-isns-0.101 ~${ARCH}" >> /etc/portage/package.accept_keywor
 
 # musl only valid for amd64 for now
 if [[ "${GENTOO_PROFILE}" == *"musl"* ]]; then
-    echo "dev-vcs/git -gpg" >> /etc/portage/package.use/musl  # gpg doesn't build on musl profiles
     echo "sys-libs/pam cracklib" >> /etc/portage/package.use/musl
 fi
