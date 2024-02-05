@@ -11,7 +11,7 @@ export GENTOO_EMERGE_DEFAULT_OPTS=${GENTOO_EMERGE_DEFAULT_OPTS:-"--binpkg-respec
 if ! declare -p GENTOO_EMERGE_ENV  2> /dev/null | grep -q '^declare \-a'; then
     declare -a GENTOO_EMERGE_ENV
     GENTOO_EMERGE_ENV+=("USE=\"-build\"")
-    GENTOO_EMERGE_ENV+=("FEATURES=\"binpkg-multi-instance buildpkg parallel-fetch parallel-install\"")
+    GENTOO_EMERGE_ENV+=("FEATURES=\"binpkg-multi-instance -buildpkg binpkg-request-signature getbinpkg parallel-fetch parallel-install\"")
     GENTOO_EMERGE_ENV+=("PKGDIR=\"/tmp/portage-pkgdir\"")
     GENTOO_EMERGE_ENV+=("DISTDIR=\"/tmp/portage-distdir\"")
     GENTOO_EMERGE_ENV+=("PORTDIR=\"/tmp/portage-portdir\"")

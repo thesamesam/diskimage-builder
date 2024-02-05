@@ -19,7 +19,8 @@ mkdir -p /etc/portage/package.use
 # needed in order to install pip packages as root
 echo 'dev-python/pip vanilla' >> /etc/portage/package.use/pip
 # needed to create disk images
-echo 'sys-fs/lvm2 -thin' >> /etc/portage/package.use/grub
+echo 'sys-fs/lvm2 lvm -thin' >> /etc/portage/package.use/grub
+echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/kernel
 echo 'sys-boot/grub device-mapper' >> /etc/portage/package.use/grub
 echo 'sys-boot/grub grub_platforms_efi-64' >> /etc/portage/package.use/grub  # always enable efi-64
 if [[ 'amd64' == "${ARCH}" ]]; then

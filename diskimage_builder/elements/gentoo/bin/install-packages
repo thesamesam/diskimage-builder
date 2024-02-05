@@ -20,12 +20,14 @@ fi
 set -eu
 set -o pipefail
 
+unset YACC LEX
+
 # env is not sourced with user specified package inclusions
 # set the default bash array if GENTOO_EMERGE_ENV is not defined as an array
 if ! declare -p GENTOO_EMERGE_ENV  2> /dev/null | grep -q '^declare \-a'; then
     declare -a GENTOO_EMERGE_ENV
     GENTOO_EMERGE_ENV+=("USE=\"-build\"")
-    GENTOO_EMERGE_ENV+=("FEATURES=\"binpkg-multi-instance buildpkg parallel-fetch parallel-install\"")
+    GENTOO_EMERGE_ENV+=("FEATURES=\"binpkg-multi-instance binpkg-request-signature getbinpkg -buildpkg parallel-fetch parallel-install\"")
     GENTOO_EMERGE_ENV+=("PKGDIR=\"/tmp/portage-pkgdir\"")
     GENTOO_EMERGE_ENV+=("DISTDIR=\"/tmp/portage-distdir\"")
     GENTOO_EMERGE_ENV+=("PORTDIR=\"/tmp/portage-portdir\"")
@@ -36,7 +38,7 @@ for (( i=0; i<${#GENTOO_EMERGE_ENV[@]}; i++ )); do
     eval export "${GENTOO_EMERGE_ENV[i]}"
 done
 # set default opts
-GENTOO_EMERGE_DEFAULT_OPTS=${GENTOO_EMERGE_DEFAULT_OPTS:-"--binpkg-respect-use --rebuilt-binaries=y --usepkg=y --with-bdeps=y --binpkg-changed-deps=y --quiet --jobs=2 --autounmask=n"}
+GENTOO_EMERGE_DEFAULT_OPTS=${GENTOO_EMERGE_DEFAULT_OPTS:-"--binpkg-respect-use --rebuilt-binaries=y --usepkg=y --with-bdeps=y --binpkg-changed-deps=y --jobs=2 --verbose --jobs=1 --autounmask=n"}
 
 ACTION='install'
 
